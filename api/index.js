@@ -13,4 +13,13 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended:false}))
 app.use(bodyParser.json())
 
-mongoose.connect(`mongodb+srv://${email}:<${password}>@cluster0.scqfhk3.mongodb.net/`)
+mongoose.connect(`mongodb+srv://${email}:<${password}>@cluster0.scqfhk3.mongodb.net/`, {
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}).then(() => {
+    console.log('coneccted')
+}).catch(err => console.log(err))
+
+app.listen(port, () => {
+    console.log("server running")
+})
