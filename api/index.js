@@ -1,4 +1,4 @@
-import { email, password } from './password'
+let accessInfo = require('./accessInfo.js')
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require("mongoose")
@@ -13,7 +13,8 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended:false}))
 app.use(bodyParser.json())
 
-mongoose.connect(`mongodb+srv://${email}:<${password}>@cluster0.scqfhk3.mongodb.net/`, {
+console.log(accessInfo)
+mongoose.connect(`mongodb+srv://${accessInfo.email}:${accessInfo.password}@cluster0.scqfhk3.mongodb.net/`, {
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(() => {
