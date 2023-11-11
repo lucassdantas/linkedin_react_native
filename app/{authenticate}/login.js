@@ -11,9 +11,13 @@ import {
 import React, {useState} from 'react'
 import {MaterialIcons} from '@expo/vector-icons'
 import {AntDesign} from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
+
+
 const login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('') 
+  const router = useRouter()
   return (
     <SafeAreaView style={{flex:1, backgroundColor:'white', alignItems:'center'}}>
       <View>
@@ -30,7 +34,7 @@ const login = () => {
           <Text style={{fontSize:17, fontWeight:'bold', marginTop:12, color:'#041E42'}}>Faça seu login</Text>
         </View>
 
-        <View style={{marginTop:70}}>
+        <View style={{marginTop:40}}>
           <View 
             style={{
               flexDirection:'row', alignItems:'center',
@@ -38,17 +42,21 @@ const login = () => {
               backgroundColor:'#E0E0E0',
               paddingVertical:5,
               borderRadius:5,
-              marginTop:30
+              marginTop:10
             }}
           >
             <MaterialIcons style={{marginLeft:8}} name='email' size={24} 
             color='gray'/>
             <TextInput
+              value={email}
+              onChangeText={text => setEmail(text)}
               secureTextEntry={true}
               style={{
                 color:'gray', 
                 marginVertical:10, 
-                width:300
+                width:300,
+                fontSize:email ? 18 : 18
+
               }} 
               placeholder='Insira seu e-mail' />
           </View>
@@ -70,20 +78,20 @@ const login = () => {
                 color='gray'
               />
             <TextInput 
-              value={email}
-              onChangeText={text => setEmail(text)}
+              value={password}
+              onChangeText={text => setPassword(text)}
               style={{
                 color:'gray', 
                 marginVertical:10, 
-                width:300
+                width:300,
+                fontSize:password ? 18 : 18
               }} 
               placeholder='Insira sua senha' />
           </View>
 
           <View>
             <Text 
-              value={password}
-              onChangeText={text => setPassword(text)}
+             
               style={{
                 marginTop:12,
                 flexDirection:'row',
@@ -103,7 +111,7 @@ const login = () => {
             </Text>
           </View>
 
-          <View style={{marginTop:80}}>
+          <View style={{marginTop:60}}>
             <Pressable 
               style={{
                 width:200, 
@@ -123,7 +131,9 @@ const login = () => {
                   Login
                 </Text>
             </Pressable>
+            
             <Pressable
+              onPress={() => router.replace('/register')}
               style={{
                 marginTop:15
               }}  
@@ -134,7 +144,9 @@ const login = () => {
                   color:"gray",
                   fontSize:16
                 }}
-              >Não tem uma conta? cadastre-se</Text>
+              >
+                Não tem uma conta? cadastre-se
+              </Text>
             </Pressable>
           </View>
         </View>
